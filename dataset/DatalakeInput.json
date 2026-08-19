@@ -13,6 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "*",
 				"folderPath": "input",
 				"fileSystem": "abhiramdirectroy20260817"
 			},
