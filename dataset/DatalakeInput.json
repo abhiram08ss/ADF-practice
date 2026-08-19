@@ -5,6 +5,11 @@
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"parameter1": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "metadatatest"
 		},
@@ -17,6 +22,7 @@
 				"fileSystem": "abhiramdirectroy20260817"
 			},
 			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
