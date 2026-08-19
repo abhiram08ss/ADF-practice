@@ -17,32 +17,10 @@
 				"fileSystem": "abhiramdirectroy20260817"
 			},
 			"columnDelimiter": ",",
-			"rowDelimiter": "\n",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "id",
-				"type": "String"
-			},
-			{
-				"name": "name",
-				"type": "String"
-			},
-			{
-				"name": "age",
-				"type": "String"
-			},
-			{
-				"name": "city",
-				"type": "String"
-			},
-			{
-				"name": "salary",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
