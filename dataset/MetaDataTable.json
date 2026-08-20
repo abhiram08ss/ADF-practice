@@ -1,0 +1,44 @@
+{
+	"name": "MetaDataTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "adfassesment20260819"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SourceSchema",
+				"type": "varchar"
+			},
+			{
+				"name": "SourceTable",
+				"type": "varchar"
+			},
+			{
+				"name": "TargetPath",
+				"type": "varchar"
+			},
+			{
+				"name": "LoadType",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkColumn",
+				"type": "varchar"
+			},
+			{
+				"name": "IsActive",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "adfassesment",
+			"table": "ETL_Metadata"
+		}
+	}
+}
