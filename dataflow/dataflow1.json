@@ -1,0 +1,86 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "InputJsonWithSchemForDataFlow",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "adf_dataflow_sink_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "flatten1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          users as (id as integer, firstName as string, lastName as string, maidenName as string, age as integer, gender as string, email as string, phone as string, username as string, password as string, birthDate as string, image as string, bloodGroup as string, height as double, weight as double, eyeColor as string, hair as (color as string, type as string), ip as string, address as (address as string, city as string, state as string, stateCode as string, postalCode as string, coordinates as (lat as double, lng as double), country as string), macAddress as string, university as string, bank as (cardExpire as string, cardNumber as string, cardType as string, currency as string, iban as string), company as (department as string, name as string, title as string, address as (address as string, city as string, state as string, stateCode as string, postalCode as string, coordinates as (lat as double, lng as double), country as string)), ein as string, ssn as string, userAgent as string, crypto as (coin as string, wallet as string, network as string), role as string)[],",
+				"          total as integer,",
+				"          skip as integer,",
+				"          limit as integer",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: true,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source1",
+				"source1 foldDown(unroll(users),",
+				"     mapColumn(",
+				"          id = users.id,",
+				"          firstName = users.firstName,",
+				"          lastName = users.lastName,",
+				"          age = users.age,",
+				"          gender = users.gender,",
+				"          email = users.email,",
+				"          phone = users.phone,",
+				"          username = users.username,",
+				"          password = users.password,",
+				"          birthDate = users.birthDate,",
+				"          eyeColor = users.eyeColor,",
+				"          height = users.height,",
+				"          weight = users.weight",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1",
+				"flatten1 sink(allowSchemaDrift: false,",
+				"     validateSchema: true,",
+				"     input(",
+				"          id as integer,",
+				"          firstName as string,",
+				"          lastName as string,",
+				"          age as integer,",
+				"          gender as string,",
+				"          email as string,",
+				"          phone as string,",
+				"          username as string,",
+				"          password as string,",
+				"          birthDate as string,",
+				"          eyeColor as string,",
+				"          height as integer,",
+				"          weight as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"name": "RestApiRequest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServer1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "adfweekendassesmet"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "users"
+			}
+		},
+		"schema": {}
+	}
+}

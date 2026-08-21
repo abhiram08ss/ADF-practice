@@ -1,0 +1,23 @@
+{
+	"name": "ResponseDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "adfweekendassesmet"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "users.json",
+				"folderPath": "adftest/raw",
+				"fileSystem": "abhiramdirectroy20260817"
+			}
+		},
+		"schema": {}
+	}
+}

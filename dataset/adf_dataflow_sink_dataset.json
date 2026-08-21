@@ -1,0 +1,76 @@
+{
+	"name": "adf_dataflow_sink_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "adfweekendassesmet"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "firstName",
+				"type": "varchar"
+			},
+			{
+				"name": "lastName",
+				"type": "varchar"
+			},
+			{
+				"name": "age",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gender",
+				"type": "varchar"
+			},
+			{
+				"name": "email",
+				"type": "varchar"
+			},
+			{
+				"name": "phone",
+				"type": "varchar"
+			},
+			{
+				"name": "username",
+				"type": "varchar"
+			},
+			{
+				"name": "password",
+				"type": "varchar"
+			},
+			{
+				"name": "birthDate",
+				"type": "varchar"
+			},
+			{
+				"name": "eyeColor",
+				"type": "varchar"
+			},
+			{
+				"name": "height",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "weight",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "users"
+		}
+	}
+}
