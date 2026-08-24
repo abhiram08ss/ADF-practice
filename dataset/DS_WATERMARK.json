@@ -1,0 +1,26 @@
+{
+	"name": "DS_WATERMARK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TargetTable",
+				"type": "varchar"
+			},
+			{
+				"name": "LastProcessedId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "adfassesment",
+			"table": "ETL_Watermark"
+		}
+	}
+}
