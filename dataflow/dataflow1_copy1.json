@@ -1,0 +1,131 @@
+{
+	"name": "dataflow1_copy1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "InputJsonWithSchemForDataFlow",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "adf_dataflow_sink_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "flatten1"
+				},
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     watermark as integer",
+				"}",
+				"source(output(",
+				"          limit as short,",
+				"          skip as boolean,",
+				"          total as short,",
+				"          users as (address as (address as string, city as string, coordinates as (lat as double, lng as double), country as string, postalCode as integer, state as string, stateCode as string), age as short, bank as (cardExpire as string, cardNumber as long, cardType as string, currency as string, iban as string), birthDate as date, bloodGroup as string, company as (address as (address as string, city as string, coordinates as (lat as double, lng as double), country as string, postalCode as integer, state as string, stateCode as string), department as string, name as string, title as string), crypto as (coin as string, network as string, wallet as string), ein as string, email as string, eyeColor as string, firstName as string, gender as string, hair as (color as string, type as string), height as double, id as short, image as string, ip as string, lastName as string, macAddress as string, maidenName as string, password as string, phone as string, role as string, ssn as string, university as string, userAgent as string, username as string, weight as double)[]",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: true,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source1",
+				"source1 foldDown(unroll(users),",
+				"     mapColumn(",
+				"          id = users.id,",
+				"          firstName = users.firstName,",
+				"          lastName = users.lastName,",
+				"          age = users.age,",
+				"          gender = users.gender,",
+				"          email = users.email,",
+				"          phone = users.phone,",
+				"          username = users.username,",
+				"          password = users.password,",
+				"          birthDate = users.birthDate,",
+				"          eyeColor = users.eyeColor,",
+				"          height = users.height,",
+				"          weight = users.weight",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1",
+				"derivedColumn1 filter(id >$watermark) ~> filter1",
+				"flatten1 derive(load_date = currentTimestamp()) ~> derivedColumn1",
+				"filter1 aggregate(groupBy(id),",
+				"     firstName = first(firstName),",
+				"          lastName = last(lastName),",
+				"          age = first(age),",
+				"          gender = first(gender),",
+				"          email = first(email),",
+				"          phone = first(phone),",
+				"          username = first(username),",
+				"          password = first(password),",
+				"          birthDate = first(birthDate),",
+				"          eyeColor = first(eyeColor),",
+				"          height = first(height),",
+				"          weight = first(weight),",
+				"          load_date = first(load_date)) ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: false,",
+				"     validateSchema: true,",
+				"     input(",
+				"          id as integer,",
+				"          firstName as string,",
+				"          lastName as string,",
+				"          age as integer,",
+				"          gender as string,",
+				"          email as string,",
+				"          phone as string,",
+				"          username as string,",
+				"          password as string,",
+				"          birthDate as date,",
+				"          eyeColor as string,",
+				"          height as integer,",
+				"          weight as integer,",
+				"          loadDate as timestamp",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          id,",
+				"          firstName,",
+				"          lastName,",
+				"          age,",
+				"          gender,",
+				"          email,",
+				"          phone,",
+				"          username,",
+				"          password,",
+				"          birthDate,",
+				"          eyeColor,",
+				"          height,",
+				"          weight,",
+				"          loadDate = load_date",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
