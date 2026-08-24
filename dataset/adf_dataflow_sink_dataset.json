@@ -18,11 +18,11 @@
 			},
 			{
 				"name": "firstName",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "lastName",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "age",
@@ -31,31 +31,31 @@
 			},
 			{
 				"name": "gender",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "email",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "phone",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "username",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "password",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "birthDate",
-				"type": "varchar"
+				"type": "date"
 			},
 			{
 				"name": "eyeColor",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "height",
@@ -66,10 +66,15 @@
 				"name": "weight",
 				"type": "int",
 				"precision": 10
+			},
+			{
+				"name": "loadDate",
+				"type": "datetime2",
+				"scale": 7
 			}
 		],
 		"typeProperties": {
-			"schema": "dbo",
+			"schema": "adfassesment",
 			"table": "users"
 		}
 	}
