@@ -30,6 +30,9 @@
 				}
 			],
 			"scriptLines": [
+				"parameters{",
+				"     watermark as integer",
+				"}",
 				"source(output(",
 				"          users as (id as integer, firstName as string, lastName as string, maidenName as string, age as integer, gender as string, email as string, phone as string, username as string, password as string, birthDate as string, image as string, bloodGroup as string, height as double, weight as double, eyeColor as string, hair as (color as string, type as string), ip as string, address as (address as string, city as string, state as string, stateCode as string, postalCode as string, coordinates as (lat as double, lng as double), country as string), macAddress as string, university as string, bank as (cardExpire as string, cardNumber as string, cardType as string, currency as string, iban as string), company as (department as string, name as string, title as string, address as (address as string, city as string, state as string, stateCode as string, postalCode as string, coordinates as (lat as double, lng as double), country as string)), ein as string, ssn as string, userAgent as string, crypto as (coin as string, wallet as string, network as string), role as string)[],",
 				"          total as integer,",
@@ -71,10 +74,11 @@
 				"          phone as string,",
 				"          username as string,",
 				"          password as string,",
-				"          birthDate as string,",
+				"          birthDate as date,",
 				"          eyeColor as string,",
 				"          height as integer,",
-				"          weight as integer",
+				"          weight as integer,",
+				"          loadDate as timestamp",
 				"     ),",
 				"     deletable:false,",
 				"     insertable:false,",
