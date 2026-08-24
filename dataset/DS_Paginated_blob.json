@@ -1,0 +1,31 @@
+{
+	"name": "DS_Paginated_blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"pageNumber": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "adfassesment20260819"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('page_', string(dataset().pageNumber), '.json')",
+					"type": "Expression"
+				},
+				"folderPath": "adftest/paginated",
+				"fileSystem": "abhiramdirectroy20260817"
+			}
+		},
+		"schema": {}
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"name": "DS_Paginated_Api_Request",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServer1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"skip": {
+				"type": "string"
+			},
+			"limit": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "adfassesment20260819"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "users?skip=@{dataset().skip}&limit=@{dataset().limit}",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}
