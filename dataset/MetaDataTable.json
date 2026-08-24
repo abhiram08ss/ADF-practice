@@ -40,5 +40,6 @@
 			"schema": "adfassesment",
 			"table": "ETL_Metadata"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }
