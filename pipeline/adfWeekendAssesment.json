@@ -47,17 +47,7 @@
 				"inputs": [
 					{
 						"referenceName": "RestApiRequest",
-						"type": "DatasetReference",
-						"parameters": {
-							"skip": {
-								"value": "@variables('watermark')",
-								"type": "Expression"
-							},
-							"limit": {
-								"value": "@pipeline().parameters.limit",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
@@ -214,12 +204,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"limit": {
-				"type": "string",
-				"defaultValue": "10"
-			}
-		},
 		"variables": {
 			"watermark": {
 				"type": "Integer"
