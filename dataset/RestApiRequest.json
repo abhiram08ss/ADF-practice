@@ -5,6 +5,14 @@
 			"referenceName": "HttpServer1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"skip": {
+				"type": "int"
+			},
+			"limit": {
+				"type": "int"
+			}
+		},
 		"folder": {
 			"name": "adfweekendassesmet"
 		},
@@ -13,7 +21,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "HttpServerLocation",
-				"relativeUrl": "users"
+				"relativeUrl": {
+					"value": "@concat('users?skip=', string(dataset().skip), '&limit=', string(dataset().limit))",
+					"type": "Expression"
+				}
 			}
 		},
 		"schema": {}
