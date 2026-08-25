@@ -22,7 +22,7 @@
 			"location": {
 				"type": "HttpServerLocation",
 				"relativeUrl": {
-					"value": "@concat('users?skip=', string(dataset().skip), '&limit=', string(dataset().limit))",
+					"value": "users",
 					"type": "Expression"
 				}
 			}
