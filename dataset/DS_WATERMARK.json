@@ -5,6 +5,9 @@
 			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "adfweekendassesmet"
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
